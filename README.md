@@ -20,6 +20,7 @@
 - [SteamClientCleaner](#SteamClientCleaner)
 - [Table of contents](#table-of-contents)
 - [What is it?](#what-is-it)
+- [Why?](#why)
 - [Installation](#installation)
 
   - [Windows](#windows)
@@ -28,24 +29,9 @@
 - [Usage](#usage)
 
   - [Notes](#notes)
-  - [Setup](#setup)
-  - [Main](#main)
-
-    - [Steam Apps](#steam-apps)
-    - [Steam App Controls](#steam-app-controls)
-    - [Blacklist](#blacklist)
-    - [Blacklist Controls](#blacklist-controls)
-
-  - [Settings](#settings)
-
-    - [Steam Location](#steam-location)
-    - [SteamClientCleaner Settings](#SteamClientCleaner-settings)
-
-  - [Client](#client)
-
-    - [Force Start Download](#force-start-download)
-    - [Client Options](#client-options)
-    - [Launch Options](#launch-options)
+  - [Warning](#warning)
+  
+- [Do It Manually](#do-it-manually) (Giggity)
 
 - [Unsigned](#unsigned)
 - [License](#license)
@@ -63,6 +49,14 @@
 
  - Will not destroy the categories you've set for apps.
 
+--------------------------------------------------------------------------------
+
+# Why?
+
+The Steam client can get bloated from log files, and stores a lot of information in it's client installation data that is kept for historical purposes or other reasons, and isn't necessary or can keep refreshed/updated. Some information can also become corrupted during updates, or in the course of "natural" use (when Steam crashes..). But, doing a Steam Client clean up can help.
+
+--------------------------------------------------------------------------------
+
 # Installation
 
 ## Windows
@@ -73,19 +67,56 @@ Download the latest SteamClientCleaner-v#.#.#-Setup.exe and install it.
 
   Download the latest SteamClientCleaner-#.#.#.dmg, mount it, and then drag SteamClientCleaner.app to Applications.
 
+--------------------------------------------------------------------------------
+
 # Usage
 
-## Note
+## Notes
 
 SCC does a lot of reading/writing. Using it on/from an SSD is not recommended.
 
-Don't run SCC while Steam is running!!
+Don't run SCC while Steam is running, or you will get an error, and it may cause issues for the Steam client!
+
+If prompted by your OS to delete the SteamApps folder **don't do it!**
+
+--------------------------------------------------------------------------------
+
+## Warning
+
+SteamClientCleaner is in no way affiliated with, authorized, maintained, sponsored or endorsed by Valve or any employees of Valve. It's also experimental, as with almost any program, so
+
+***USE AT YOUR OWN RISK***.
 
 --------------------------------------------------------------------------------
 
 First, make sure Steam is closed.
 
 Press "Choose" and then find and select your Steam installation folder. If you're using the default Steam installation location it should be automatically selected. The default Steam installation location can also be viewed by going to the Help page.
+
+Press "Clean". Wait; the program will say when it's "Done".
+
+Exit SCC and start Steam (.exe, .app, however you like to start it -- I won't tell anyone); Steam will reinstall itself and launch when finished.
+
+--------------------------------------------------------------------------------
+
+# Do It Manually
+(Giggity)
+
+First, make sure Steam is not open. If it's open you **will** get error(s), and may cause problems for the Steam client.
+
+* Go to the folder where Steam is installed (by default this is C:\\Program Files\\Steam or C:\\Program Files (x86)\\Steam on Windows, /Users/yourusername/Library/Application Support/Steam on Mac, and I think /home/username/.steam on Ubuntu Linux).
+
+* Delete everything in the ../Steam/config/ folder ***except for***
+ * config.vdf
+ * loginusers.vdf
+
+* Delete everything in the ../Steam/ folder ***except for***
+ * ../Steam/steamapps/ -- installed games
+ * ../Steam/config/ -- config folder above
+ * ../Steam/userdata/ -- some settings, screenshots, local save data (which should be synched to the Steam Cloud, but isn't always)
+ * ../Steam/ssfn\* -- ***All files*** that start with the characters ssfn
+
+* Then run Steam (.exe, .app, whatever) to "re-install" the client around the existing data.
 
 --------------------------------------------------------------------------------
 
