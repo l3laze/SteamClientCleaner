@@ -1,10 +1,8 @@
 ## SteamClientCleaner
 
+[![AppVeyor Build Status](https://img.shields.io/appveyor/ci/l3laze/SteamClientCleaner/master.svg)](https://ci.appveyor.com/project/l3laze/SteamClientCleaner)
 
-[![Travis-CI Build Status](https://travis-ci.org/l3laze/SteamClientCleaner.svg?branch=master)](https://travis-ci.org/l3laze/SteamClientCleaner) [![Appveyor Build Status](https://ci.appveyor.com/api/projects/status/x6rj9gyaqm9o7bje?svg=true)](https://ci.appveyor.com/project/l3laze/SteamClientCleaner)
-
-
-[![Libraries.io for GitHub](https://img.shields.io/librariesio/github/l3laze/SteamClientCleaner.svg)](https://github.com/l3laze/SteamClientCleaner/issues)
+[![Libraries.io for GitHub](https://img.shields.io/librariesio/github/l3laze/SteamClientCleaner.svg)]()
 
 [![GitHub issues](https://img.shields.io/github/issues/l3laze/SteamClientCleaner.svg)](https://github.com/l3laze/SteamClientCleaner/issues)
 
@@ -69,11 +67,11 @@
 
 ## Windows
 
-Download the SteamClientCleaner-v#.#.#-Setup.exe and install it.
+Download the latest SteamClientCleaner-v#.#.#-Setup.exe and install it.
 
 ## Mac
 
-  Download the .dmg, mount it, and then drag SteamClientCleaner.app to Applications.
+  Download the latest SteamClientCleaner-#.#.#.dmg, mount it, and then drag SteamClientCleaner.app to Applications.
 
 # Usage
 
@@ -81,7 +79,11 @@ Download the SteamClientCleaner-v#.#.#-Setup.exe and install it.
 
 SCC does a lot of reading/writing. Using it on/from an SSD is not recommended.
 
+Don't run SCC while Steam is running!!
+
 --------------------------------------------------------------------------------
+
+First, make sure Steam is closed.
 
 Press "Choose" and then find and select your Steam installation folder. If you're using the default Steam installation location it should be automatically selected. The default Steam installation location can also be viewed by going to the Help page.
 

@@ -1,6 +1,6 @@
 {
   "name": "SteamClientCleaner",
-  "version": "v0.0.1",
+  "version": "v1.0.0",
   "description": "Helps clean up the Steam client application.",
   "main": "main.js",
   "author": "l3l_aze <l3l_aze@yahoo.com>",
