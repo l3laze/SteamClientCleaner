@@ -1,0 +1,69 @@
+{
+  "name": "SteamClientCleaner",
+  "version": "v0.0.1",
+  "author": "l3l_aze <l3l_aze@yahoo.com>",
+  "license": "MIT",
+  "copyright": "Copyright © 2017 ${author}",
+  "repository": {
+    "type": "git",
+    "url": "git+github.com/l3laze/SteamClientCleaner.git"
+  },
+  "build": {
+    "appId": "tmshvr.steamclientcleaner",
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": [
+        "dmg"
+      ]
+    },
+    "dmg": {
+      "artifactName": "${productName}-${version}.${ext}",
+      "icon": null,
+      "contents": [
+        {
+          "x": 120,
+          "y": 190
+        },
+        {
+          "x": 450,
+          "y": 190,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "nsis": {
+      "deleteAppDataOnUninstall": true,
+      "artifactName": "${productName}-${version}-Setup.${ext}"
+    },
+    "linux": {
+      "category": "Utility;FileTools"
+    },
+    "appImage": {
+      "systemIntegration": "doNotAsk"
+    }
+  },
+  "scripts": {
+    "postinstall": "electron-builder install-app-deps",
+    "start": "electron ./app --enable-logging",
+    "dev": "NODE_ENV='development' yarn run start",
+    "pack": "build --dir -lmw",
+    "dist": "build",
+    "dist:mac": "build -m",
+    "dist:win": "build -w --ia32 --x64",
+    "dist:win-32": "build -w --ia32",
+    "dist:win-64": "build -w --x64",
+    "dist:win-all": "build -w --ia32 --x64",
+    "dist:linux": "build -l --ia32 --x64",
+    "dist:linux-32": "build -l --ia32",
+    "dist:linux-64": "build -l --x64",
+    "dist:all": "build -lmw --ia32 --x64",
+    "dist-32": "build --ia32",
+    "dist-64": "build --x64",
+    "dist-32_64": "build --ia32 --x64"
+  },
+  "devDependencies": {
+    "electron": "^1.7.5",
+    "electron-builder": "^19.24.1"
+  }
+}

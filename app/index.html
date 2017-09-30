@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en" style="height:100%">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="l3l_aze">
+  <title>SteamClientCleaner</title>
+  <link rel="stylesheet" href="node_modules/w3-css/w3.css" />
+  <link rel="stylesheet" href="node_modules/badger.js/badger.css" />
+  <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css" />
+</head>
+<body style="background:-webkit-linear-gradient(white 40%, silver);background-repeat: no-repeat;height: 100%">
+  <section id="mainContainer" class="w3-container w3-center">
+    <div>
+      <label>Location</label>
+      <br />
+      <br />
+      <span id="path">...</span>
+      <br />
+      <br />
+      <input type="button" id="choose" value="Choose" />
+      <hr style="border-color:black"/ >
+      <input type="button" id="clean" value="Clean" />
+      <br />
+      <br />
+      <ul style="list-style-type:none;margin:0;padding:0"><li>If you are prompted by Steam or your OS to delete the SteamApps folder, <b>don't do it</b>!</li></ul>
+    </div>
+    <footer class="w3-bottom w3-margin-bottom w3-center">
+      <span>
+        <a href="javascript:void(0);" id="madeWith">Made with</a>
+        <b style="font-size:1.5em;color:red;vertical-align:baseline">&hearts;</b>
+        by l3l_aze and
+        <a href="javascript:void(0);" id="contributors">contributors</a>.
+      </span>
+    </footer>
+  </section>
+
+  <section id="contributorContainer" class="w3-container w3-center" style="display:none">
+    <div>
+      <ul style="list-style-position:inside">
+        <li>
+          <span>Fnzyy - Gave me the idea to make a program for this.</span>
+        </li>
+        <li>
+          <span>SilentReaper - <a href="https://forums.steamrep.com/threads/steam-client-clean-up.104175/" title="https://forums.steamrep.com/threads/steam-client-clean-up.104175/">Windows Steam Client clean up method</a>.</span>
+        </li>
+      </ul>
+    </div>
+    <footer class="w3-bottom w3-margin-bottom">
+      <input type="button" id="leaveContributors" value="Return to Main Window" />
+      <br />
+    </footer>
+  </section>
+
+  <section id="madeWithContainer" class="w3-container w3-center" style="display:none">
+    <div id="powerContainer">
+      <b>This app is powered by the following</b>
+      <a href="javascript:void(0);" id="withTools" style="text-decoration:none">&gt;</a>
+      <div class="badger-container">
+        <!-- This will be generated -->
+      </div>
+    </div>
+    <div id="toolContainer" style="display:none">
+      <a href="javascript:void(0);" id="withPower" style="text-decoration:none">&lt;</a>
+      <b>This app is built with the following</b>
+      <div class="badger-container">
+        <!-- This will be generated -->
+      </div>
+    </div>
+    <footer class="w3-bottom w3-margin-bottom w3-center">
+      <input type="button" id="leaveMadeWith" value="Return to Main Window" />
+    </footer>
+  </section>
+
+  <section id="helpContainer" class="w3-container w3-center" style="display:none">
+    <div>
+      <h3>Help</h3>
+      <ul style="list-style-position: inside;margin-left:0;padding-left:0">
+        <li>
+          <span> Press "Choose" and select the folder where the Steam client data is installed. By default on your system this should be:
+            <br />
+            <b id="defaultLocation">...</b>
+          </span>
+        </li>
+        <br />
+        <li>
+          <span>Press "Clean" to clean up the installation. This will effectively uninstall the Steam client and</span>
+          <ul>
+            <li>
+              <span>Deletes the installed skins -- <b>so if you're working on a skin make a backup!</b>.</span>
+            </li>
+            <li>
+              <span>Will reset most Steam client settings to the default.</span>
+            </li>
+          </ul>
+        </li>
+        <br />
+        <b>But</b>
+        <li style="list-style-type:none">
+          <ul>
+            <li>
+              <span>It won't uninstall your Steam games.</span>
+            </li>
+            <li>
+              <span>You won't have to login to Steam again.</span>
+            </li>
+            <li>
+              <span>You won't lose any categories you have set for games.</span>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <footer class="w3-bottom w3-margin-bottom w3-center">
+      <input type="button" id="leaveHelp" value="Return to Main Window" />
+    </footer>
+  </section>
+
+  <!-- Insert this line above script imports -->
+  <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+  <!-- normal script imports etc  -->
+
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/badger.js/badger.js"></script>
+    <script src="cleaner.js"></script>
+
+  <!-- Insert this line after script imports -->
+  <script>if (window.module) module = window.module;</script>
+
+  <script type="text/javascript"><!--
+    var SteamCleaner = new SteamClientCleaner();
+
+    $( "#defaultLocation" ).html( SteamCleaner.getDefaultLocation());
+
+    $( "#choose" ).click( function() {
+      try {
+        SteamCleaner.chooseSteam();
+        $( "#path" ).html( SteamCleaner.steamPath );
+      }
+      catch( err ) {
+        alert( err );
+      }
+    });
+
+    $( "#clean" ).click( function() {
+      try {
+        SteamCleaner.cleanSteam();
+      }
+      catch( err ) {
+        alert( err );
+      }
+    });
+
+    $( "#madeWith" ).click( function() {
+      $( "#contributorContainer" ).css( "display", "none" );
+      $( "#helpContainer" ).css( "display", "none" );
+      $( "#madeWithContainer" ).css( "display", "block" );
+      $( "#mainContainer" ).css( "display", "none" );
+    });
+
+    $( "#contributors" ).click( function() {
+      $( "#contributorContainer" ).css( "display", "block" );
+      $( "#helpContainer" ).css( "display", "none" );
+      $( "#madeWithContainer" ).css( "display", "none" );
+      $( "#mainContainer" ).css( "display", "none" );
+    });
+
+    function returnToMain() {
+      $( "#contributorContainer" ).css( "display", "none" );
+      $( "#helpContainer" ).css( "display", "none" );
+      $( "#madeWithContainer" ).css( "display", "none" );
+      $( "#mainContainer" ).css( "display", "block" );
+    }
+
+    $( "#leaveHelp" ).click( function() {
+      returnToMain();
+    });
+
+    $( "#leaveMadeWith" ).click( function() {
+      returnToMain();
+    });
+
+    $( "#leaveContributors" ).click( function() {
+      returnToMain();
+    });
+
+    $( "#withPower" ).click( function() {
+      $( "#powerContainer" ).css( "display", "block" );
+      $( "#toolContainer" ).css( "display", "none" );
+    });
+
+    $( "#withTools" ).click( function() {
+      $( "#powerContainer" ).css( "display", "none" );
+      $( "#toolContainer" ).css( "display", "block" );
+    });
+
+    function initBadges() {
+      var toolBadges = [
+        {
+          name: "GitHub",
+          home: "https://github.com/",
+          license: ""
+        },
+        {
+          name: "GitKraken",
+          home: "https://www.gitkraken.com/",
+          license: ""
+        },
+        {
+          name: "Atom",
+          home: "https://atom.io/",
+          license: ""
+        },
+        {
+          name: "Appveyor",
+          home: "https://www.appveyor.com/",
+          license: ""
+        },
+        {
+          name: "electron-builder",
+          home: "https://github.com/electron-userland/electron-builder",
+          license: "https://github.com/electron-userland/electron-builder/blob/master/LICENSE"
+        }
+      ],
+      powerBadges = [
+        {
+          name: "Electron",
+          home: "http://electron.atom.io/",
+          license: "https://github.com/electron/electron/blob/master/LICENSE"
+        },
+        {
+          name: "Font-Awesome",
+          home: "http://fontawesome.io/",
+          license: "http://fontawesome.io/license/"
+        },
+        {
+          name: "jQuery",
+          home: "http://jquery.com/",
+          license: "https://github.com/jquery/jquery/blob/master/LICENSE.txt"
+        },
+        {
+          name: "Badger.JS",
+          home: "https://github.com/l3laze/Badger.js",
+          license: "https://github.com/l3laze/Badger.js/blob/master/LICENSE"
+        },
+        {
+          name: "W3.CSS",
+          home: "http://www.w3schools.com/w3css/",
+          license: ""
+        }
+      ],
+      tools = document.getElementById( "toolContainer" ).getElementsByClassName( "badger-container" )[ 0 ],
+      power = document.getElementById( "powerContainer" ).getElementsByClassName( "badger-container" )[ 0 ],
+      i;
+
+      for( i = 0; i < toolBadges.length; i++ ) {
+        tools.appendChild( craftBadge( toolBadges[ i ]));
+      }
+
+      for( i = 0; i < powerBadges.length; i++ ) {
+        power.appendChild( craftBadge( powerBadges[ i ]));
+      }
+    }
+
+    window.addEventListener( "DOMContentLoaded", initBadges );
+  --></script>
+</body>
+</html>

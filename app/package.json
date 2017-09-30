@@ -1,0 +1,20 @@
+{
+  "name": "SteamClientCleaner",
+  "version": "v0.0.1",
+  "description": "Helps clean up the Steam client application.",
+  "main": "main.js",
+  "author": "l3l_aze <l3l_aze@yahoo.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/l3laze/SteamClientCleaner",
+  "repository": {
+    "type": "git",
+    "url": "git+github.com/l3laze/SteamClientCleaner.git"
+  },
+  "dependencies": {
+    "badger.js": "^2.0.2",
+    "font-awesome": "^4.7.0",
+    "fs-extra": "^4.0.2",
+    "jquery": "^3.2.1",
+    "w3-css": "^4.0.4"
+  }
+}

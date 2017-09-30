@@ -1,0 +1,55 @@
+# Build using 64-bit Windows.
+os: unstable
+platform: x64
+
+# Because of this:
+#   https://help.github.com/articles/dealing-with-line-endings/
+init:
+  - git config --global core.autocrlf input
+
+install:
+  - yarn
+
+# Download repo as a zip file.
+shallow_clone: true
+
+# Only clone the 3 latest commits.
+clone_depth: 3
+
+
+# Cache some dirs for faster build.
+cache:
+  - "%LOCALAPPDATA%\\Yarn"
+
+
+# Quiet-ish build.
+build:
+  verbosity: minimal
+
+
+# The executable(s) expected.
+artifacts:
+  # Path to artifact
+  - path: dist/*.exe
+
+# ...
+build_script:
+  - yarn run dist-32_64
+
+# ...
+test: off
+
+# Deploy to GitHub Releases
+deploy:
+  provider: GitHub
+  # This is mine, get your own!
+  #  Needed to access GH API.
+  auth_token:
+    secure: yc7IkqH7Sgpc9AaumTPtZXlpbPde5huW9CK9YoMqWYxIND1yrEzQeole585FKcWr
+  # Do not create a prerelease
+  prerelease: false
+  # Do not create a draft
+  draft: true
+  on:
+    # Only deploy from a tag.
+    appveyor_repo_tag: true

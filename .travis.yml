@@ -1,0 +1,76 @@
+# Set language as Node.js, and use
+#   the latest stable release of v7.
+language: node_js
+node_js: "8"
+
+
+# Run on Linux, Ubuntu 14.04.X LTS
+#   aka "Trusty Tahr".
+os: linux
+dist: trusty
+sudo: required
+
+
+# Cache directories for faster builds.
+# Need to add more to this..
+cache:
+  yarn: true
+  directories:
+  - node_modules
+  - app/node_modules
+
+# Install Yarn..
+before_install:
+  - npm i npm -g
+  - npm i yarn -g
+
+
+# Use npm run to execute
+#   electron-builder to build the
+#   project for both 32 & 64-bit
+#   platforms of Linux or Windows.
+script:
+- yarn run dist-32_64
+
+
+# Create a global variable for each
+#   of the 32 & 64-bit release packages
+#   and echo their paths.
+before_deploy:
+- export RELEASE_32=$(ls $TRAVIS_BUILD_DIR/dist/*86.AppImage)
+- export RELEASE_64=$(ls $TRAVIS_BUILD_DIR/dist/*64.AppImage)
+- echo "Deploying $RELEASE_32 & $RELEASE_64 to GitHub releases."
+
+
+# Handle deploying the app to GitHub
+#   via GitHub "Releases".
+deploy:
+  provider: releases
+  # Needed to access GitHub API.
+  #   Unique to me; get your own!
+  api_key:
+    secure: L/vReZuGufrW2OBwk9oh19k2owPJswS3LP8zMNPRP36p1nX7FnhNdbU+ETjx54Lwzd9t8pAVdusLXHtaifJCjffyRGV2BshB+jhZsWkBbGQ6oP4ekkN5G7Fo/94kPCN1iSnWOZOdMlNFrnN1dBkdCcmQILaKXRHH5p2en2T/rfA8Daf4tRzsxtJltwov7XEO5FgHaxelzX63gay+oXEbz5u8gqJSGIkANkxLHF5qutc/EJ9jaNOrvZL0HpPSY+t52PyQyL0fQI4Gq/0s0IzRDleWtMyJeItcKKe2X5PV2yH1wlSwBjXQVkqluWEJyu+4xAQcTgmZB7JqijjjYGaxnRWv/nq3lFx4mqyvlbQC13aisaxVlxeuFsw30Fa7ar9ZqCIrgQ44qwmkegssIGJa9ykxFfuAKzmhY+SEZAF9Ksrzxo7ldsb4iTQqsL/O/VNA6EajQxRMEHssf8SE+GZpBhDUpSvaOMCT5yCKgrvU6e0bj7DUYbLPGFDZZmmZ08YSaPlF9i+D8ntkGE/bpEC5G9la2kbGBJLuavsubmnzlHJ05AHHQU6fAjhC3PGQK21d/RljNsA0b6BocEANykFI+TpxQitE+GKx3XZo86Vlaw2mlzg7+pDAJuDKVCzWNTwFFqUbjyIT+eBD0qOw+GZTJobbruXxMiQeJsCwAWgSc+Y=
+  # Needed to upload multiple artifacts
+  #   (files), AFAIK.
+  file_glob: true
+  file:
+    - "$RELEASE_32"
+    - "$RELEASE_64"
+  # Don't let the system clean up, it
+  #   will delete the built files and
+  #   then the deploy will fail as
+  #   there will be no artifacts.
+  skip_cleanup: true
+  on:
+    # Only deploy from the given repo.
+    repo: l3laze/ReliefValve
+    # Deploy from any branch? True/False.
+    all_branches: false
+    # Deploy on tags? True/False.
+    tags: true
+
+# Setup build notifications
+notifications:
+  # I was being harassed while setting
+  #   this all up..lol.
+  email: false
