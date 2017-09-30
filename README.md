@@ -2,7 +2,7 @@
 
 [![AppVeyor Build Status](https://img.shields.io/appveyor/ci/l3laze/SteamClientCleaner/master.svg)](https://ci.appveyor.com/project/l3laze/SteamClientCleaner)
 
-[![Libraries.io for GitHub](https://img.shields.io/librariesio/github/l3laze/SteamClientCleaner.svg)]()
+[![Libraries.io for GitHub](https://img.shields.io/librariesio/github/l3laze/SteamClientCleaner.svg)](https://github.com/l3laze/SteamClientCleaner/issues)
 
 [![GitHub issues](https://img.shields.io/github/issues/l3laze/SteamClientCleaner.svg)](https://github.com/l3laze/SteamClientCleaner/issues)
 
