@@ -14,7 +14,7 @@
     "badger.js": "^2.0.3",
     "font-awesome": "^4.7.0",
     "fs-extra": "^4.0.2",
-    "jquery": "^3.2.1",
+    "jquery": "^3.4.0",
     "w3-css": "^4.0.4"
   }
 }
